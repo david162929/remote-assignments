@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<meta charset="UTF-8">
+		<title>David Server</title>
+		
+		<script>
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 4) {
+					console.log(xhr.responseText);
+				}
+			};
+			xhr.open("GET","http://localhost:3000/getData?number=10");
+			xhr.send();
+			
+			var xhrUser = new XMLHttpRequest();
+			xhrUser.onreadystatechange = function () {
+				if (xhrUser.readyState === 4) {
+					console.log(xhrUser.responseText);
+					document.getElementById("result").innerHTML = xhrUser.responseText;
+				}
+			};
+			function sendAJAX() {
+				var num = document.getElementById("input").value;
+				xhrUser.open("GET",`http://localhost:3000/getData?number=${num}`);
+				xhrUser.send(); 
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<header>
+			<h1>Sum Tool</h1>
+		</header>
+		
+		<section id="content">
+			<h2>Sum</h2>
+			
+			<label>Choose a number：</label>
+			<input type="text" id="input">
+			<button type="submit" onclick="sendAJAX()">Go!</button>
+			
+			
+			<div id="result">
+			
+			</div>
+			
+		</section>
+		<footer></footer>
+	</body>
+	
+</html>
