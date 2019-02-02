@@ -1,0 +1,27 @@
+extends layout.pug
+
+block content
+  section#content
+    h2 Hello!
+    
+    h2= textFailed
+    
+    h3 Sign up:
+    form(action="/sign-up",method="post")
+        div
+          label Enter your mail:
+            input(type="text",name="email")
+        div
+          label Enter your password:
+            input(type="text",name="password")
+        button(type="submit") Submit
+    
+    h3 Sign in: 
+    form(action="/sign-in",method="post")
+        div
+          label Enter your mail:
+            input(type="text",name="email")
+        div
+          label Enter your password:
+            input(type="text",name="password")
+        button(type="submit") Submit
