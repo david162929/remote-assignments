@@ -64,7 +64,7 @@ app.post("/sign-up", (req, res) => {
 				res.redirect("/member");
 		}
 		else {
-				res.cookie("signStatus", "Sing up failed");
+				res.cookie("signStatus", `Sing up failed, someone used ${email}.`);
 				res.redirect("/");
 		}
 	
@@ -132,7 +132,12 @@ app.post("/sign-in", (req, res) => {
 		
 		if (result.length === 0) {
 			console.log("do not match");
-			res.cookie("signStatus", "Sing in failed");
+			res.cookie("signStatus", "Email not found.");
+			res.redirect("/");
+		}
+		else if (result[0].password !== password) {
+			console.log("wrong password");
+			res.cookie("signStatus", "Wrong password.");
 			res.redirect("/");
 		}
 		else {
